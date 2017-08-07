@@ -21,7 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CrawlerAction {
+public class FTCrawlerAction {
 	@Autowired
 	private UrlDao urlDao;
 	

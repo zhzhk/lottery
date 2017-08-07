@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 
 import org.apache.http.client.ClientProtocolException;
-import org.crawler.action.CrawlerAction;
+import org.crawler.action.FTCrawlerAction;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(locations={"classpath:application.xml"})
 public class CrawlerActionTest {
 	@Autowired
-	private CrawlerAction crawelAction;
+	private FTCrawlerAction crawelAction;
 	
 	@Autowired
 	private SimulateLoginAction simulateLoginAction;
