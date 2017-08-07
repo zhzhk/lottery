@@ -16,17 +16,16 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class CrawlerActionTest {
 	@Autowired
 	private CrawlerAction crawelAction;
-
-	public void setCrawelUtil(CrawlerAction crawelAction) {
-		this.crawelAction = crawelAction;
-	}
+	
+	@Autowired
+	private SimulateLoginAction simulateLoginAction;
 
 	@Test
 	public void test() throws ClientProtocolException, IOException{
 		//ApplicationContext ctx = new ClassPathXmlApplicationContext("application.xml");
 //		UrlData urlData = urlDao.getUrlData();
 //		System.out.println(urlData.getWeb_site());
-		crawelAction.LoginAction();
+		simulateLoginAction.LoginAction();
 	}
 	
 	@Test

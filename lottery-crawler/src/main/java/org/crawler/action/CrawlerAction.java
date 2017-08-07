@@ -12,7 +12,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.fluent.Form;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.client.fluent.Response;
 import org.crawler.entity.GameData;
@@ -25,31 +24,6 @@ import org.springframework.stereotype.Component;
 public class CrawlerAction {
 	@Autowired
 	private UrlDao urlDao;
-	//模拟登录获取uid
-	public void LoginAction() throws ClientProtocolException, IOException{
-		UrlData urlData = urlDao.getUrlData("1");
-		String loginUsername = urlData.getUsername();
-		String password = urlData.getPassword();
-		String loginUrl = urlData.getWeb_site();
-		String lanaguage = urlData.getLanguage();
-		String uid = urlData.getUid();
-		
-		Response reponse = Request.Post(loginUrl)
-		.bodyForm(Form.form().add("uid",uid).add("langx",lanaguage).add("mac","")
-		.add("ver","").add("JE","").add("username",loginUsername).add("password",password)
-		.add("checkbox","on").build()).execute();
-		
-		String uidString = reponse.returnContent().asString();
-//		System.out.println(uidString);
-		String pattern = "top.uid = \'(\\w+)\'";
-		Pattern r = Pattern.compile(pattern);
-		Matcher m = r.matcher(uidString);
-		if(m.find()){
-//			System.out.println(m.group(1));
-			urlDao.updateUid(m.group(1), "2");
-		}
-		
-	}
 	
 	//足球今日赛事数据爬取
 	public String CrawelData() throws ClientProtocolException, IOException, ParseException{
