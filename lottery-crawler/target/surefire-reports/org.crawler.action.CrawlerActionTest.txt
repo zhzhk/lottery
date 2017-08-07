@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: org.crawler.action.CrawlerActionTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.691 sec
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.021 sec

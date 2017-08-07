@@ -1,3 +1,4 @@
+org\crawler\action\BKCrawlerAction.class
 org\crawler\service\impl\UrlDaoImpl$1.class
 org\crawler\entity\UrlData.class
 org\crawler\service\impl\UrlDaoImpl$2.class
@@ -5,7 +6,7 @@ org\crawler\service\impl\UrlDaoImpl$3.class
 org\crawler\service\UrlDao.class
 org\crawler\service\impl\UrlDaoImpl$4.class
 org\crawler\util\HtmlUtil.class
-org\crawler\action\CrawlerAction.class
 org\crawler\entity\GameData.class
+org\crawler\action\FTCrawlerAction.class
 org\crawler\service\impl\UrlDaoImpl.class
 org\crawler\util\RegexUtil.class

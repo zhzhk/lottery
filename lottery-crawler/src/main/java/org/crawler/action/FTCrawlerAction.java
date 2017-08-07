@@ -61,7 +61,8 @@ public class FTCrawlerAction {
 //		'爱尔兰联赛杯','10202','10201','戈尔韦联','登克尔克','C','1','0.72','0.60','O2.5 / 3','U2.5 / 3','0.69',
 //		'0.60','5.60','1.23','4.10','单','双','1.65','1.64','2842706','C','0.5','0.51','0.79','O1 / 1.5',
 //		'U1 / 1.5','0.47','0.82','4.80','1.78','2.05','11','0','','N');
-
+		String pagePattern = "parent.t_page=(\\d{1});";
+		
 		String pattern2 = "parent.GameFT\\[\\d+\\]=new Array\\((.*)\\);";
 		Pattern r2 = Pattern.compile(pattern2);		
 		Matcher m2 = r2.matcher(dataString);
