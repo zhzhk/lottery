@@ -166,6 +166,7 @@ public class CrawlerAction {
 			gameDatas.add(gameData);
 			
 		}
+		System.out.println("######################"+gameDatas.size()+"#################");
 		urlDao.saveGameDatas(gameDatas);
 		System.out.println(count);
 		return null;
