@@ -2,8 +2,8 @@ package org.web.service;
 
 import java.util.List;
 
-import org.crawler.entity.GameData;
+import org.web.entity.WebFootballMatchesData;
 
 public interface FtMatchesDatasService {
-	public List<GameData> getMatchesDatas();
+	public List<WebFootballMatchesData> getMatchesDatas();
 }

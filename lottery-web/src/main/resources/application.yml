@@ -6,18 +6,18 @@ logging:
         tk.mybatis: TRACE
 
 druid:
-    url:jdbc:mysql://localhost:3306/sports
-    username:root
-    password:4568321
-    initial-size:1
-    min-idle:1
-    max_active:20
-    test-on-borrow:true
+    url: jdbc:mysql://localhost:3306/sports
+    username: root
+    password: 4568321
+    initial-size: 1
+    min-idle: 1
+    max_active: 20
+    test-on-borrow: true
 
 
 mybatis:
-    mapperLocations:classpath:mapper/*.xml
-    type-aliases-package:org.crawler.entity
+    mapperLocations: classpath:mapper/*.xml
+    type-aliases-package: org.web.entity
 
 mapper:
     mappers:
@@ -26,7 +26,15 @@ mapper:
     identity: MYSQL
 
 pagehelper:
-    helperDialect:mysql
-    reasonable:true
-    supportMethodsArguments:true
-    params:count=countSql
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+
+environments:
+    dev:
+        url: http://dev.hg.com
+        name: Developer Setup
+    prod:
+        url: http://prod.hg.com
+        name: My Cool App

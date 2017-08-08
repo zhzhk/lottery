@@ -1,6 +1,7 @@
+E:\develop\EclipseWorkSpace\lottery-web\src\main\java\org\web\service\impl\FtMatchesDatasServiceImpl.java
 E:\develop\EclipseWorkSpace\lottery-web\src\main\java\org\web\controller\IndexController.java
-E:\develop\EclipseWorkSpace\lottery-web\src\main\java\org\web\service\serviceImpl\FtMatchesDatasServiceImpl.java
-E:\develop\EclipseWorkSpace\lottery-web\src\main\java\org\web\mapper\GameDataMapper.java
-E:\develop\EclipseWorkSpace\lottery-web\src\main\java\org\web\controller\Application.java
+E:\develop\EclipseWorkSpace\lottery-web\src\main\java\org\web\Application.java
+E:\develop\EclipseWorkSpace\lottery-web\src\main\java\org\web\entity\WebFootballMatchesData.java
+E:\develop\EclipseWorkSpace\lottery-web\src\main\java\org\web\mapper\WebFootballMatchesDataMapper.java
 E:\develop\EclipseWorkSpace\lottery-web\src\main\java\org\web\service\FtMatchesDatasService.java
 E:\develop\EclipseWorkSpace\lottery-web\src\main\java\org\web\util\BaseMapper.java

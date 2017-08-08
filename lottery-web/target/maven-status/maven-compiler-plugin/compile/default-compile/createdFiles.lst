@@ -1,6 +1,3 @@
 org\web\controller\IndexController.class
-org\web\service\serviceImpl\FtMatchesDatasServiceImpl.class
-org\web\util\BaseMapper.class
-org\web\mapper\GameDataMapper.class
-org\web\controller\Application.class
 org\web\service\FtMatchesDatasService.class
+org\web\util\BaseMapper.class
