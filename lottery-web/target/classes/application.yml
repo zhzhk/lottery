@@ -1,0 +1,32 @@
+server:
+  port: 8080
+  
+logging:
+    level:
+        tk.mybatis: TRACE
+
+druid:
+    url:jdbc:mysql://localhost:3306/sports
+    username:root
+    password:4568321
+    initial-size:1
+    min-idle:1
+    max_active:20
+    test-on-borrow:true
+
+
+mybatis:
+    mapperLocations:classpath:mapper/*.xml
+    type-aliases-package:org.crawler.entity
+
+mapper:
+    mappers:
+        - org.web.util.BaseMapper
+    not-empty: false
+    identity: MYSQL
+
+pagehelper:
+    helperDialect:mysql
+    reasonable:true
+    supportMethodsArguments:true
+    params:count=countSql

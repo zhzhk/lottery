@@ -1,7 +1,8 @@
-C:\Users\zzk\git\manage\src\main\java\org\crawler\entity\GameData.java
-C:\Users\zzk\git\manage\src\main\java\org\crawler\service\impl\UrlDaoImpl.java
-C:\Users\zzk\git\manage\src\main\java\org\crawler\action\CrawlerAction.java
-C:\Users\zzk\git\manage\src\main\java\org\crawler\util\RegexUtil.java
-C:\Users\zzk\git\manage\src\main\java\org\crawler\entity\UrlData.java
-C:\Users\zzk\git\manage\src\main\java\org\crawler\service\UrlDao.java
-C:\Users\zzk\git\manage\src\main\java\org\crawler\util\HtmlUtil.java
+E:\develop\EclipseWorkSpace\lottery-crawler\src\main\java\org\crawler\action\BKCrawlerAction.java
+E:\develop\EclipseWorkSpace\lottery-crawler\src\main\java\org\crawler\action\FTCrawlerAction.java
+E:\develop\EclipseWorkSpace\lottery-crawler\src\main\java\org\crawler\service\UrlDao.java
+E:\develop\EclipseWorkSpace\lottery-crawler\src\main\java\org\crawler\entity\GameData.java
+E:\develop\EclipseWorkSpace\lottery-crawler\src\main\java\org\crawler\service\impl\UrlDaoImpl.java
+E:\develop\EclipseWorkSpace\lottery-crawler\src\main\java\org\crawler\util\RegexUtil.java
+E:\develop\EclipseWorkSpace\lottery-crawler\src\main\java\org\crawler\util\HtmlUtil.java
+E:\develop\EclipseWorkSpace\lottery-crawler\src\main\java\org\crawler\entity\UrlData.java
