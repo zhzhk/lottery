@@ -14,8 +14,8 @@ import java.util.regex.Pattern;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.client.fluent.Response;
-import org.crawler.entity.GameData;
 import org.crawler.entity.UrlData;
+import org.crawler.entity.WebFootballMatchesData;
 import org.crawler.service.UrlDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -66,7 +66,7 @@ public class BKCrawlerAction {
 		Pattern r2 = Pattern.compile(pattern2);		
 		Matcher m2 = r2.matcher(dataString);
 		int count = 0;
-		List<GameData> gameDatas = new ArrayList<GameData>();
+		List<WebFootballMatchesData> gameDatas = new ArrayList<WebFootballMatchesData>();
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
@@ -82,7 +82,7 @@ public class BKCrawlerAction {
 			Date date = new java.sql.Date(time);
 			long detailTime = timeFormat.parse(year+"-"+timeArray[0]+" "+timeArray[1].substring(0,timeArray[1].length()-1)+":00").getTime();
 			Timestamp dateTime = new Timestamp(detailTime);
-			GameData gameData = new GameData();
+			WebFootballMatchesData gameData = new WebFootballMatchesData();
 			gameData.setMid(Integer.parseInt(dataArray[getElementIndexByValue("gid",headArray)]));
 			gameData.setType("FT");
 			gameData.setMb_mid(Integer.parseInt(dataArray[getElementIndexByValue("gnum_h",headArray)]));
@@ -106,7 +106,7 @@ public class BKCrawlerAction {
 //			'0.60','5.60','1.23','4.10','单','双','1.65','1.64','2842706','C','0.5','0.51','0.79','O1 / 1.5',
 //			'U1 / 1.5','0.47','0.82','4.80','1.78','2.05','11','0','','N');
 
-			gameData.setShowTypeR(dataArray[getElementIndexByValue("strong",headArray)]);
+			gameData.setShowtyper(dataArray[getElementIndexByValue("strong",headArray)]);
 			gameData.setM_letb(dataArray[getElementIndexByValue("ratio",headArray)]);
 			gameData.setMb_letb_rate(dataArray[getElementIndexByValue("ior_RH",headArray)]);
 			gameData.setTg_letb_rate(dataArray[getElementIndexByValue("ior_RC",headArray)]);
@@ -119,7 +119,7 @@ public class BKCrawlerAction {
 			gameData.setM_flat_rate(dataArray[getElementIndexByValue("ior_MN",headArray)]);
 			gameData.setS_single_rate(dataArray[getElementIndexByValue("ior_EOO",headArray)]);
 			gameData.setS_double_rate(dataArray[getElementIndexByValue("ior_EOE",headArray)]);
-			gameData.setShowTypeHR(dataArray[getElementIndexByValue("hstrong",headArray)]);
+			gameData.setShowtypehr(dataArray[getElementIndexByValue("hstrong",headArray)]);
 			gameData.setM_letb_h(dataArray[getElementIndexByValue("hratio",headArray)]);
 			gameData.setMb_letb_rate_h(dataArray[getElementIndexByValue("ior_HRH",headArray)]);
 			gameData.setTg_letb_rate_h(dataArray[getElementIndexByValue("ior_HRC",headArray)]);
@@ -172,7 +172,7 @@ public class BKCrawlerAction {
 		Pattern r2 = Pattern.compile(pattern2);		
 		Matcher m2 = r2.matcher(dataString);
 		int count = 0;
-		List<GameData> gameDatas = new ArrayList<GameData>();
+		List<WebFootballMatchesData> gameDatas = new ArrayList<WebFootballMatchesData>();
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
@@ -186,7 +186,7 @@ public class BKCrawlerAction {
 			Date date = new java.sql.Date(time);
 			long detailTime = timeFormat.parse(year+"-"+timeArray[0]+" "+timeArray[1].substring(0,timeArray[1].length()-1)+":00").getTime();
 			Timestamp dateTime = new Timestamp(detailTime);
-			GameData gameData = new GameData();
+			WebFootballMatchesData gameData = new WebFootballMatchesData();
 			gameData.setMid(Integer.parseInt(dataArray[getElementIndexByValue("gid",headArray)]));
 			gameData.setType("FT");
 			gameData.setMb_mid(Integer.parseInt(dataArray[getElementIndexByValue("gnum_h",headArray)]));
@@ -210,7 +210,7 @@ public class BKCrawlerAction {
 //			'1.54','2.35','2129678','','img','Y','08-06<br>08:16p','2H^27','3','肯萨斯城体育会','87','1.18','87');
 
 			
-			gameData.setShowTypeRB(dataArray[getElementIndexByValue("strong",headArray)]);
+			gameData.setShowtyperb(dataArray[getElementIndexByValue("strong",headArray)]);
 			gameData.setM_letb_rb(dataArray[getElementIndexByValue("ratio",headArray)]);
 			gameData.setMb_letb_rate_rb(dataArray[getElementIndexByValue("ior_RH",headArray)]);
 			gameData.setTg_letb_rate_rb(dataArray[getElementIndexByValue("ior_RC",headArray)]);
@@ -223,7 +223,7 @@ public class BKCrawlerAction {
 			gameData.setM_flat_rate_rb(dataArray[getElementIndexByValue("ior_MN",headArray)]);
 			gameData.setS_single_rate_rb(dataArray[getElementIndexByValue("ior_EOO",headArray)]);
 			gameData.setS_double_rate_rb(dataArray[getElementIndexByValue("ior_EOE",headArray)]);
-			gameData.setShowTypeHRB(dataArray[getElementIndexByValue("hstrong",headArray)]);
+			gameData.setShowtypehrb(dataArray[getElementIndexByValue("hstrong",headArray)]);
 			gameData.setM_letb_rb_h(dataArray[getElementIndexByValue("hratio",headArray)]);
 			gameData.setMb_letb_rate_rb_h(dataArray[getElementIndexByValue("ior_HRH",headArray)]);
 			gameData.setTg_letb_rate_rb_h(dataArray[getElementIndexByValue("ior_HRC",headArray)]);

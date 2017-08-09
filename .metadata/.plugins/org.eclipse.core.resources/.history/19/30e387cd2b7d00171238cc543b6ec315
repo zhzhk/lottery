@@ -1,0 +1,9 @@
+package org.web.service;
+
+import java.util.List;
+
+import org.web.entity.WebFootballMatchesData;
+
+public interface FtMatchesDatasService {
+	public List<WebFootballMatchesData> getMatchesDatas();
+}

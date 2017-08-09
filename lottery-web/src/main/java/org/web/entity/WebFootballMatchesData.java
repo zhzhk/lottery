@@ -3,7 +3,7 @@ package org.web.entity;
 import java.sql.Timestamp;
 import java.util.Date;
 
-public class WebFootballMatchesData {
+public class WebFootballMatchesData extends PageEntity {
 	
 	/**
 	 * 足球赛事bean

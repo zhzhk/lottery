@@ -1,0 +1,6 @@
+package org.crawler.util;
+
+public class CrawlerThreadUtil {
+
+
+}

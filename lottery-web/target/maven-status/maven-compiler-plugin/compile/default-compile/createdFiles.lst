@@ -1,3 +1,8 @@
+org\web\entity\WebFootballMatchesData.class
 org\web\controller\IndexController.class
 org\web\service\FtMatchesDatasService.class
+org\web\Application.class
 org\web\util\BaseMapper.class
+org\web\mapper\WebFootballMatchesDataMapper.class
+org\web\service\impl\FtMatchesDatasServiceImpl.class
+org\hg\lottery\lottery_web\App.class

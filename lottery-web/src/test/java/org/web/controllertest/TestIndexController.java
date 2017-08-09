@@ -25,8 +25,9 @@ public class TestIndexController {
 	private FtMatchesDatasService ftMatchesDatasService;
 	@Test
 	public void test(){
+		WebFootballMatchesData webFootballMatchesData = new WebFootballMatchesData();
 		List<WebFootballMatchesData> webFootballMatchesDatas = new ArrayList<WebFootballMatchesData>();
-        webFootballMatchesDatas = ftMatchesDatasService.getMatchesDatas();
+        webFootballMatchesDatas = ftMatchesDatasService.getTodayMatchesDatas(webFootballMatchesData);
         System.out.println(webFootballMatchesDatas);
 	}
 }

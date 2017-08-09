@@ -1,0 +1,16 @@
+package org.crawler.action;
+
+import org.crawler.service.GetDatasService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+public class SimulateLoginAction {
+	@Autowired
+	private GetDatasService urlDao;
+	//模拟登录获取uid
+	public void LoginAction(){
+		String str = urlDao.updateUid();
+		System.out.println(str);
+	}
+}

@@ -22,12 +22,13 @@ public class IndexController {
 	@Autowired
 	private FtMatchesDatasService ftMatchesDatasService;
 	
+	//首页默认展示足球今日赛事数据
 	@GetMapping(value = "index")
-    public List<WebFootballMatchesData> index(HttpServletRequest req) {
+    public List<WebFootballMatchesData> index(HttpServletRequest req,WebFootballMatchesData webFootballMatchesData) {
 		int addr = req.getRemotePort();
 		System.out.println(addr);
         List<WebFootballMatchesData> webFootballMatchesDatas = new ArrayList<WebFootballMatchesData>();
-        webFootballMatchesDatas = ftMatchesDatasService.getMatchesDatas();
+        webFootballMatchesDatas = ftMatchesDatasService.getTodayMatchesDatas(webFootballMatchesData);
         return webFootballMatchesDatas;
     }
 }

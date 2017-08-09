@@ -1,0 +1,14 @@
+package org.crawler.util;
+
+public class CrawlerThreadUtil implements Runnable {
+
+	public CrawlerThreadUtil(){
+		
+	}
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

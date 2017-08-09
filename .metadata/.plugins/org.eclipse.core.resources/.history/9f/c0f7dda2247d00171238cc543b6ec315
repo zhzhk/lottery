@@ -1,0 +1,108 @@
+package org.crawler.util;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.fluent.Request;
+import org.apache.http.client.fluent.Response;
+
+public class CrawlerUtil {
+	public static Map<String,Set<String>> map = new HashMap<String,Set<String>>();
+	public static Set<String> gameList = new HashSet<String>();
+	public static Map<String,List<String>> getResult(String url,String uid,String lang,String type,int page){
+		String crawlerUrl = null;
+		switch(type){
+			case "1":
+				crawlerUrl = url+"?uid="+uid+"&rtype=r&langx="+lang+"&mtype=3&page_no="+page+"&league_id=&hot_game=undefined&sort_type=undefined&zbreload=1&l=ALL";
+			case "2":
+				crawlerUrl = url+"?uid="+uid+"&rtype=re&langx="+lang+"&mtype=3&delay=&league_id=";
+			default:
+		}
+		Response rep;
+		String dataString = null;
+		try {
+			rep = Request.Get(crawlerUrl).execute();
+			dataString = rep.returnContent().asString();
+		} catch (ClientProtocolException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		if(page==0){
+			String pattern1 = "parent.GameHead=new Array\\((.+)\\);";
+			Pattern rh = Pattern.compile(pattern1);
+			Matcher mh = rh.matcher(dataString);
+//			System.out.println(m1.find());
+			String[] headArray = null;
+			if(mh.find()){
+//				System.out.println(m1.group(1));
+				headArray = mh.group(1).replaceAll("'", "").split(",");
+				Set<String> headList = new HashSet<String>();
+				for(String headElement : headArray){
+					headList.add(headElement);
+				}
+				map.put("headTitle", headList);
+			}
+//			parent.GameHead=new Array('gid','datetime','league','gnum_h','gnum_c','team_h','team_c','strong',
+//			'ratio','ior_RH','ior_RC','ratio_o','ratio_u','ior_OUH','ior_OUC','ior_MH','ior_MC','ior_MN',
+//			'str_odd','str_even','ior_EOO','ior_EOE','hgid','hstrong','hratio','ior_HRH','ior_HRC','hratio_o',
+//			'hratio_u','ior_HOUH','ior_HOUC','ior_HMH','ior_HMC','ior_HMN','more','eventid','hot','play');
+//			parent.GameFT[0]=new Array('2842706','08-07<br>11:00a<br><font color=red>Running Ball</font>',
+//			'爱尔兰联赛杯','10202','10201','戈尔韦联','登克尔克','C','1','0.72','0.60','O2.5 / 3','U2.5 / 3','0.69',
+//			'0.60','5.60','1.23','4.10','单','双','1.65','1.64','2842706','C','0.5','0.51','0.79','O1 / 1.5',
+//			'U1 / 1.5','0.47','0.82','4.80','1.78','2.05','11','0','','N');			
+		}
+		
+		int pageCount = 0;
+		String pagePattern = "parent.t_page=(\\d{1});";
+		Pattern rp = Pattern.compile(pagePattern);
+		Matcher mp = rp.matcher(dataString);
+		
+		if(mp.find()){
+			pageCount = Integer.parseInt(mp.group(1));
+		}
+		
+		String patterngame = "parent.GameFT\\[\\d+\\]=new Array\\((.*)\\);";
+		Pattern rg = Pattern.compile(patterngame);		
+		Matcher mg = rg.matcher(dataString);
+		while(mg.find()){
+			gameList.add(mg.group(1));
+		}
+		
+		if(pageCount - page > 1 && !"2".equals(type)){
+			getResult(url,uid,lang,type,page+1);
+		}
+		
+		map.put("gameData", gameList);
+		return map;		
+	}
+	
+	public static void main(String[] args){
+		Map<String, List<String>> map = new HashMap<String,List<String>>();
+		List gameList = new ArrayList();
+		String url = "https://www.6686sky.net/app/member/FT_browse/body_var.php";
+		String uid = "0661c693519aa35fa7efra0";
+		String lang = "zh-cn";
+		String type = "2";
+		int page = 0;
+		CrawlerUtil crawlerUtil = new CrawlerUtil();
+		map = crawlerUtil.getResult(url, uid, lang, type, page);
+		List headArray = map.get("headTitle");
+		String str = headArray.toString();
+		List<String> gamedatas = map.get("gameData");
+		String data = headArray.toString();
+		System.out.println(gamedatas.size());
+		for(String gamedatastr : gamedatas){
+			System.out.println(gamedatastr);
+		}
+	}
+}

@@ -1,0 +1,7 @@
+package org.crawler.util;
+
+public class CrawlerUtil {
+	public Map<String,String> getResult(){
+		
+	}
+}

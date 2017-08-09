@@ -8,8 +8,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.crawler.entity.GameData;
 import org.crawler.entity.UrlData;
+import org.crawler.entity.WebFootballMatchesData;
 import org.crawler.service.UrlDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
@@ -65,10 +65,10 @@ public class UrlDaoImpl implements UrlDao {
 	}
 
 	@Override
-	public int saveGameDatas(List<GameData> gameDatas) {
-		List<GameData> batchUpdateDatas = new ArrayList<GameData>();
-		List<GameData> batchInsertDatas = new ArrayList<GameData>();
-		for(GameData gameData : gameDatas){
+	public int saveGameDatas(List<WebFootballMatchesData> gameDatas) {
+		List<WebFootballMatchesData> batchUpdateDatas = new ArrayList<WebFootballMatchesData>();
+		List<WebFootballMatchesData> batchInsertDatas = new ArrayList<WebFootballMatchesData>();
+		for(WebFootballMatchesData gameData : gameDatas){
 			String isExistSql = "select count(*) from web_football_matches_data where MID = ?";
 			int rowRecord = jdbcTemplate.queryForObject(isExistSql,Integer.class,gameData.getMid());
 			if(0==rowRecord){
@@ -92,7 +92,7 @@ public class UrlDaoImpl implements UrlDao {
 	}
 	
 	//批量更新
-	public int[] batchUpdate(final List<GameData> batchUpdateDatas){
+	public int[] batchUpdate(final List<WebFootballMatchesData> batchUpdateDatas){
 		String uSql = "update web_football_matches_data set MB_Win_Rate = ?,TG_Win_Rate = ?,M_Flat_Rate = ?,ShowTypeR = ?,M_LetB = ?,MB_LetB_Rate = ?,"
 				+ "TG_LetB_Rate = ?,MB_Dime = ?,TG_Dime = ?,MB_Dime_Rate = ?,TG_Dime_Rate = ?,MB_Win_Rate_H = ?,TG_Win_Rate_H = ?,M_Flat_Rate_H = ?,"
 				+ "ShowTypeHR = ?,M_LetB_H = ?,MB_LetB_Rate_H = ?,TG_LetB_Rate_H = ?,MB_Dime_H = ?,TG_Dime_H = ?,MB_Dime_Rate_H = ?,TG_Dime_Rate_H = ?,"
@@ -110,7 +110,7 @@ public class UrlDaoImpl implements UrlDao {
 				ps.setString(1, batchUpdateDatas.get(i).getMb_win_rate());
 				ps.setString(2, batchUpdateDatas.get(i).getTg_win_rate());
 				ps.setString(3, batchUpdateDatas.get(i).getM_flat_rate());
-				ps.setString(4, batchUpdateDatas.get(i).getShowTypeR());
+				ps.setString(4, batchUpdateDatas.get(i).getShowtyper());
 				ps.setString(5, batchUpdateDatas.get(i).getM_letb());
 				ps.setString(6, batchUpdateDatas.get(i).getMb_letb_rate());
 				ps.setString(7, batchUpdateDatas.get(i).getTg_letb_rate());
@@ -121,7 +121,7 @@ public class UrlDaoImpl implements UrlDao {
 				ps.setString(12, batchUpdateDatas.get(i).getMb_win_rate_h());
 				ps.setString(13, batchUpdateDatas.get(i).getTg_win_rate_h());
 				ps.setString(14, batchUpdateDatas.get(i).getM_flat_rate_h());
-				ps.setString(15, batchUpdateDatas.get(i).getShowTypeHR());
+				ps.setString(15, batchUpdateDatas.get(i).getShowtypehr());
 				ps.setString(16, batchUpdateDatas.get(i).getM_letb_h());
 				ps.setString(17, batchUpdateDatas.get(i).getMb_letb_rate_h());
 				ps.setString(18, batchUpdateDatas.get(i).getTg_letb_rate_h());
@@ -136,7 +136,7 @@ public class UrlDaoImpl implements UrlDao {
 				ps.setString(26, batchUpdateDatas.get(i).getMb_win_rate_rb());
 				ps.setString(27, batchUpdateDatas.get(i).getTg_win_rate_rb());
 				ps.setString(28, batchUpdateDatas.get(i).getM_flat_rate_rb());
-				ps.setString(29, batchUpdateDatas.get(i).getShowTypeRB());
+				ps.setString(29, batchUpdateDatas.get(i).getShowtyperb());
 				ps.setString(30, batchUpdateDatas.get(i).getM_letb_rb());
 				ps.setString(31, batchUpdateDatas.get(i).getMb_letb_rate_rb());
 				ps.setString(32, batchUpdateDatas.get(i).getTg_letb_rate_rb());
@@ -147,7 +147,7 @@ public class UrlDaoImpl implements UrlDao {
 				ps.setString(37, batchUpdateDatas.get(i).getMb_win_rate_rb_h());
 				ps.setString(38, batchUpdateDatas.get(i).getTg_win_rate_rb_h());
 				ps.setString(39, batchUpdateDatas.get(i).getM_flat_rate_rb_h());
-				ps.setString(40, batchUpdateDatas.get(i).getShowTypeHRB());
+				ps.setString(40, batchUpdateDatas.get(i).getShowtypehrb());
 				ps.setString(41, batchUpdateDatas.get(i).getM_letb_rb_h());
 				ps.setString(42, batchUpdateDatas.get(i).getMb_letb_rate_rb_h());
 				ps.setString(43, batchUpdateDatas.get(i).getTg_letb_rate_rb_h());
@@ -169,11 +169,11 @@ public class UrlDaoImpl implements UrlDao {
 				ps.setString(59, batchUpdateDatas.get(i).getMb_red());
 				ps.setString(60, batchUpdateDatas.get(i).getTg_red());
 				ps.setString(61, batchUpdateDatas.get(i).getHot());
-				ps.setString(62, batchUpdateDatas.get(i).getIsOpen());
-				ps.setString(63, batchUpdateDatas.get(i).getIsFinish());
-				ps.setString(64, batchUpdateDatas.get(i).getIsCancel());
-				ps.setString(65, batchUpdateDatas.get(i).getIsChecked());
-				ps.setString(66, batchUpdateDatas.get(i).getIsCheckout());
+				ps.setString(62, batchUpdateDatas.get(i).getIsopen());
+				ps.setString(63, batchUpdateDatas.get(i).getIsfinish());
+				ps.setString(64, batchUpdateDatas.get(i).getIscancel());
+				ps.setString(65, batchUpdateDatas.get(i).getIschecked());
+				ps.setString(66, batchUpdateDatas.get(i).getIscheckout());
 				ps.setString(67, batchUpdateDatas.get(i).getNow_play());
 				ps.setString(68, batchUpdateDatas.get(i).getSource_type());
 				ps.setInt(69, batchUpdateDatas.get(i).getMid());
@@ -188,7 +188,7 @@ public class UrlDaoImpl implements UrlDao {
 	}
 	
 	//批量插入数据
-	public int[] batchInsert(final List<GameData> batchInsertDatas){
+	public int[] batchInsert(final List<WebFootballMatchesData> batchInsertDatas){
 		String uSql = "insert into web_football_matches_data set MID = ?,Type = ?, MB_MID = ?, TG_MID = ?,MB_Team_cn = ?,TG_Team_cn = ?,M_Date = ?, M_Time = ?,"
 				+ "M_Start = ?,M_League_cn = ?, MB_Win_Rate = ?,TG_Win_Rate = ?,M_Flat_Rate = ?,ShowTypeR = ?,M_LetB = ?,MB_LetB_Rate = ?,"
 				+ "TG_LetB_Rate = ?,MB_Dime = ?,TG_Dime = ?,MB_Dime_Rate = ?,TG_Dime_Rate = ?,MB_Win_Rate_H = ?,TG_Win_Rate_H = ?,M_Flat_Rate_H = ?,"
@@ -217,7 +217,7 @@ public class UrlDaoImpl implements UrlDao {
 				ps.setString(11, batchInsertDatas.get(i).getMb_win_rate());
 				ps.setString(12, batchInsertDatas.get(i).getTg_win_rate());
 				ps.setString(13, batchInsertDatas.get(i).getM_flat_rate());
-				ps.setString(14, batchInsertDatas.get(i).getShowTypeR());
+				ps.setString(14, batchInsertDatas.get(i).getShowtyper());
 				ps.setString(15, batchInsertDatas.get(i).getM_letb());
 				ps.setString(16, batchInsertDatas.get(i).getMb_letb_rate());
 				ps.setString(17, batchInsertDatas.get(i).getTg_letb_rate());
@@ -228,7 +228,7 @@ public class UrlDaoImpl implements UrlDao {
 				ps.setString(22, batchInsertDatas.get(i).getMb_win_rate_h());
 				ps.setString(23, batchInsertDatas.get(i).getTg_win_rate_h());
 				ps.setString(24, batchInsertDatas.get(i).getM_flat_rate_h());
-				ps.setString(25, batchInsertDatas.get(i).getShowTypeHR());
+				ps.setString(25, batchInsertDatas.get(i).getShowtypehr());
 				ps.setString(26, batchInsertDatas.get(i).getM_letb_h());
 				ps.setString(27, batchInsertDatas.get(i).getMb_letb_rate_h());
 				ps.setString(28, batchInsertDatas.get(i).getTg_letb_rate_h());
@@ -243,7 +243,7 @@ public class UrlDaoImpl implements UrlDao {
 				ps.setString(36, batchInsertDatas.get(i).getMb_win_rate_rb());
 				ps.setString(37, batchInsertDatas.get(i).getTg_win_rate_rb());
 				ps.setString(38, batchInsertDatas.get(i).getM_flat_rate_rb());
-				ps.setString(39, batchInsertDatas.get(i).getShowTypeRB());
+				ps.setString(39, batchInsertDatas.get(i).getShowtyperb());
 				ps.setString(40, batchInsertDatas.get(i).getM_letb_rb());
 				ps.setString(41, batchInsertDatas.get(i).getMb_letb_rate_rb());
 				ps.setString(42, batchInsertDatas.get(i).getTg_letb_rate_rb());
@@ -254,7 +254,7 @@ public class UrlDaoImpl implements UrlDao {
 				ps.setString(47, batchInsertDatas.get(i).getMb_win_rate_rb_h());
 				ps.setString(48, batchInsertDatas.get(i).getTg_win_rate_rb_h());
 				ps.setString(49, batchInsertDatas.get(i).getM_flat_rate_rb_h());
-				ps.setString(50, batchInsertDatas.get(i).getShowTypeHRB());
+				ps.setString(50, batchInsertDatas.get(i).getShowtypehrb());
 				ps.setString(51, batchInsertDatas.get(i).getM_letb_rb_h());
 				ps.setString(52, batchInsertDatas.get(i).getMb_letb_rate_rb_h());
 				ps.setString(53, batchInsertDatas.get(i).getTg_letb_rate_rb_h());
@@ -280,11 +280,11 @@ public class UrlDaoImpl implements UrlDao {
 				
 				
 				ps.setString(71, batchInsertDatas.get(i).getHot());
-				ps.setString(72, batchInsertDatas.get(i).getIsOpen());
-				ps.setString(73, batchInsertDatas.get(i).getIsFinish());
-				ps.setString(74, batchInsertDatas.get(i).getIsCancel());
-				ps.setString(75, batchInsertDatas.get(i).getIsChecked());
-				ps.setString(76, batchInsertDatas.get(i).getIsCheckout());
+				ps.setString(72, batchInsertDatas.get(i).getIsopen());
+				ps.setString(73, batchInsertDatas.get(i).getIsfinish());
+				ps.setString(74, batchInsertDatas.get(i).getIscancel());
+				ps.setString(75, batchInsertDatas.get(i).getIschecked());
+				ps.setString(76, batchInsertDatas.get(i).getIscheckout());
 				ps.setString(77, batchInsertDatas.get(i).getNow_play());
 				ps.setString(78, batchInsertDatas.get(i).getSource_type());
 			}

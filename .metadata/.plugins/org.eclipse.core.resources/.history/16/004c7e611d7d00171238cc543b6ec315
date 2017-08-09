@@ -1,0 +1,50 @@
+package org.crawler.action;
+
+import java.io.IOException;
+import java.text.ParseException;
+
+import org.apache.http.client.ClientProtocolException;
+import org.crawler.action.FTCrawlerAction;
+import org.crawler.service.GetDatasService;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations={"classpath:crawler-application.xml"})
+public class CrawlerActionTest {
+	@Autowired
+	private FTCrawlerAction crawelAction;
+	
+//	@Autowired
+//	private SimulateLoginAction simulateLoginAction;
+	
+	@Autowired
+	private GetDatasService getDatasService;
+
+	@Test
+	public void test() throws ClientProtocolException, IOException{
+		//ApplicationContext ctx = new ClassPathXmlApplicationContext("application.xml");
+//		UrlData urlData = urlDao.getUrlData();
+//		System.out.println(urlData.getWeb_site());
+		simulateLoginAction.LoginAction();
+	}
+	
+	@Test
+	public void testCrawelData() throws ClientProtocolException, IOException, ParseException{
+		crawelAction.CrawelData();
+	}
+	
+	@Test
+	public void testCrawelRbData() throws ClientProtocolException, IOException, ParseException{
+		crawelAction.CrawelRbData();
+	}
+	
+	@Test
+	public void testCrawelService(){
+		int a = getDatasService.getFtTodayMatchesDatas();
+		System.out.println(a);
+	}
+}

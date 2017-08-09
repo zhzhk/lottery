@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="CrawlerActionTest.testCrawelService2" project="lottery-crawler" tests="1" started="1" failures="0" errors="1" ignored="0">
+  <testcase name="testCrawelService2" classname="org.crawler.action.CrawlerActionTest" time="2.766">
+    <error>org.springframework.dao.DuplicateKeyException: PreparedStatementCallback; SQL [insert into web_football_matches_data set MID = ?,Type = ?, MB_MID = ?, TG_MID = ?,MB_Team_cn = ?,TG_Team_cn = ?,M_Date = ?, M_Time = ?,M_Start = ?,M_League_cn = ?, MB_Win_Rate = ?,TG_Win_Rate = ?,M_Flat_Rate = ?,ShowTypeR = ?,M_LetB = ?,MB_LetB_Rate = ?,TG_LetB_Rate = ?,MB_Dime = ?,TG_Dime = ?,MB_Dime_Rate = ?,TG_Dime_Rate = ?,MB_Win_Rate_H = ?,TG_Win_Rate_H = ?,M_Flat_Rate_H = ?,ShowTypeHR = ?,M_LetB_H = ?,MB_LetB_Rate_H = ?,TG_LetB_Rate_H = ?,MB_Dime_H = ?,TG_Dime_H = ?,MB_Dime_Rate_H = ?,TG_Dime_Rate_H = ?,S_Single_Rate = ?,S_Double_Rate = ?,R_Show = ?, MB_Win_Rate_RB = ?,TG_Win_Rate_RB = ?,M_Flat_Rate_RB = ?,ShowTypeRB = ?,M_LetB_RB = ?,MB_LetB_Rate_RB = ?,TG_LetB_Rate_RB = ?,MB_Dime_RB = ?,TG_Dime_RB= ?,MB_Dime_Rate_RB = ?,TG_Dime_Rate_RB = ?,MB_Win_Rate_RB_H = ?,TG_Win_Rate_RB_H = ?,M_Flat_Rate_RB_H = ?,ShowTypeHRB = ?,M_LetB_RB_H = ?,MB_LetB_Rate_RB_H = ?,TG_LetB_Rate_RB_H = ?,MB_Dime_RB_H = ?,TG_Dime_RB_H = ?,MB_Dime_Rate_RB_H = ?,TG_Dime_Rate_RB_H = ?,S_Single_Rate_RB= ?,S_Double_Rate_RB = ?,RB_Show = ?,MB_Inball = ?,TG_Inball = ?,MB_Inball_HR = ?,TG_Inball_HR = ?,MB_Ball = ?,TG_Ball = ?,MB_Card = ?,TG_Card = ?,MB_Red = ?,TG_Red = ?,Hot = ?,isOpen = ?,isFinish = ?,isCancel = ?,isChecked = ?,isCheckout = ?,now_play = ?,source_type = ?]; Duplicate entry '2847564' for key 'PRIMARY'; nested exception is java.sql.BatchUpdateException: Duplicate entry '2847564' for key 'PRIMARY'&#13;
+	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:239)&#13;
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:73)&#13;
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:649)&#13;
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:662)&#13;
+	at org.springframework.jdbc.core.JdbcTemplate.batchUpdate(JdbcTemplate.java:950)&#13;
+	at org.crawler.service.impl.GetDatasServiceImpl.batchInsert(GetDatasServiceImpl.java:440)&#13;
+	at org.crawler.service.impl.GetDatasServiceImpl.saveGameDatas(GetDatasServiceImpl.java:322)&#13;
+	at org.crawler.service.impl.GetDatasServiceImpl.getFtRbMatchesDatas(GetDatasServiceImpl.java:262)&#13;
+	at org.crawler.action.CrawlerActionTest.testCrawelService2(CrawlerActionTest.java:48)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)&#13;
+	at java.lang.reflect.Method.invoke(Method.java:498)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:75)&#13;
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:86)&#13;
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:84)&#13;
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)&#13;
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:252)&#13;
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:94)&#13;
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)&#13;
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)&#13;
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)&#13;
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)&#13;
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)&#13;
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)&#13;
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)&#13;
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)&#13;
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:191)&#13;
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)&#13;
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:678)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)&#13;
+Caused by: java.sql.BatchUpdateException: Duplicate entry '2847564' for key 'PRIMARY'&#13;
+	at com.mysql.jdbc.PreparedStatement.executeBatchSerially(PreparedStatement.java:2056)&#13;
+	at com.mysql.jdbc.PreparedStatement.executeBatch(PreparedStatement.java:1467)&#13;
+	at org.springframework.jdbc.core.JdbcTemplate$4.doInPreparedStatement(JdbcTemplate.java:966)&#13;
+	at org.springframework.jdbc.core.JdbcTemplate$4.doInPreparedStatement(JdbcTemplate.java:950)&#13;
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:633)&#13;
+	... 35 more&#13;
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '2847564' for key 'PRIMARY'&#13;
+	at sun.reflect.GeneratedConstructorAccessor21.newInstance(Unknown Source)&#13;
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)&#13;
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)&#13;
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)&#13;
+	at com.mysql.jdbc.Util.getInstance(Util.java:386)&#13;
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1041)&#13;
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4190)&#13;
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4122)&#13;
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2570)&#13;
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2731)&#13;
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2818)&#13;
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:2157)&#13;
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2460)&#13;
+	at com.mysql.jdbc.PreparedStatement.executeBatchSerially(PreparedStatement.java:2008)&#13;
+	... 39 more&#13;
+&#13;
+</error>
+  </testcase>
+</testrun>

@@ -5,5 +5,5 @@ import java.util.List;
 import org.web.entity.WebFootballMatchesData;
 
 public interface FtMatchesDatasService {
-	public List<WebFootballMatchesData> getMatchesDatas();
+	public List<WebFootballMatchesData> getTodayMatchesDatas(WebFootballMatchesData webFootballMatchesData);
 }

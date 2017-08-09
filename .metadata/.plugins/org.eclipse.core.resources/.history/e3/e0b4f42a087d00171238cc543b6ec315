@@ -1,0 +1,106 @@
+package org.crawler.service.impl;
+
+import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.fluent.Form;
+import org.apache.http.client.fluent.Request;
+import org.apache.http.client.fluent.Response;
+import org.crawler.entity.UrlData;
+import org.crawler.service.GetDatasService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
+
+@Component
+public class GetDatasServiceImpl implements GetDatasService {
+	@Autowired 
+	private JdbcTemplate jdbcTemplate;
+
+	@Override
+	public String updateUid() {
+		UrlData urlData = getUrlData("1");
+		String loginUsername = urlData.getUsername();
+		String password = urlData.getPassword();
+		String loginUrl = urlData.getWeb_site();
+		String lanaguage = urlData.getLanguage();
+		String uid = urlData.getUid();
+		
+		Response reponse;
+		String uidString = null;
+		try {
+			reponse = Request.Post(loginUrl)
+			.bodyForm(Form.form().add("uid",uid).add("langx",lanaguage).add("mac","")
+			.add("ver","").add("JE","").add("username",loginUsername).add("password",password)
+			.add("checkbox","on").build()).execute();
+			uidString = reponse.returnContent().asString();
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println(uidString);
+//		<script>window.location.href='https://www.6686sky.net/app/member/FT_index.php?mtype=3&uid=5c402015669aa35fa7efra8&langx=zh-cn';</script>
+		String pattern = "&uid=\'(\\w+)\'&langx";
+		Pattern r = Pattern.compile(pattern);
+		Matcher m = r.matcher(uidString);
+		String msg = null;
+		if(m.find()){
+			System.out.println(m.group(1));
+			String uuidSql = "update web_crawel_site set uid = ? where web_type = ?"; 
+			jdbcTemplate.update(uuidSql, uid, "2");
+			msg = "更新成功";
+		}
+		return msg;
+	}
+
+	@Override
+	public int getFtTodayMatchesDatas() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getFtRbMatchesDatas() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getBkTodayMatchesDatas() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getBkRbMatchesDatas() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	public UrlData getUrlData(String wtype) {
+		UrlData urlData = jdbcTemplate.queryForObject(
+				"select * from web_crawel_site where ID = ?",
+				new Object[]{wtype},
+				new RowMapper<UrlData>() {
+				public UrlData mapRow(ResultSet rs, int rowNum) throws SQLException {
+					UrlData urlData = new UrlData();
+					urlData.setWeb_type(rs.getString("web_type"));
+					urlData.setWeb_site(rs.getString("web_site"));
+					urlData.setUsername(rs.getString("username"));
+					urlData.setPassword(rs.getString("password"));
+					urlData.setUid(rs.getString("uid"));
+					urlData.setLanguage(rs.getString("language"));
+					return urlData;
+				}
+			}
+		);
+		return urlData;
+	}
+}

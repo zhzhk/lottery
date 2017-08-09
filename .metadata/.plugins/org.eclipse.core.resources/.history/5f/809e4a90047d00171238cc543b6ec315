@@ -1,0 +1,25 @@
+package org.crawler.action;
+
+import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.fluent.Form;
+import org.apache.http.client.fluent.Request;
+import org.apache.http.client.fluent.Response;
+import org.crawler.entity.UrlData;
+import org.crawler.service.GetDatasService;
+import org.crawler.service.UrlDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+public class SimulateLoginAction {
+	@Autowired
+	private GetDatasService urlDao;
+	//模拟登录获取uid
+	public void LoginAction() throws ClientProtocolException, IOException{
+		String str = urlDao.updateUid();	
+	}
+}
