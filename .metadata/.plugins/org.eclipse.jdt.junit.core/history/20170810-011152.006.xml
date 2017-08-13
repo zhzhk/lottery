@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="CrawlerActionTest" project="lottery-crawler" tests="2" started="2" failures="0" errors="0" ignored="0">
-  <testsuite name="org.crawler.action.CrawlerActionTest" time="16.937">
-    <testcase name="testCrawelService2" classname="org.crawler.action.CrawlerActionTest" time="4.874"/>
-    <testcase name="testCrawelService" classname="org.crawler.action.CrawlerActionTest" time="12.063"/>
-  </testsuite>
-</testrun>

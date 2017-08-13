@@ -1,0 +1,11 @@
+package org.web.util;
+
+import org.web.entity.Result;
+
+public class ResultUtil {
+	public static <T> Result<T> success(Object object){
+		Result<T> result = new Result<T>();
+		result.setCode(0);
+		return result;
+	}
+}

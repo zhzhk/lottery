@@ -1,0 +1,16 @@
+package org.crawler.action;
+
+import org.crawler.service.GetProxyIpService;
+import org.crawler.util.ProxyUtil;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class ProxyUtilTest {
+	@Autowired
+	private GetProxyIpService getProxyIpService;
+	@Test
+	public void testGetFreeProxy(){
+		ProxyUtil gfp = new ProxyUtil();
+		getProxyIpService.saveProxyIpDatas();
+	}
+}

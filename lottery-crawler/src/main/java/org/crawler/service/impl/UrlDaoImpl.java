@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.crawler.entity.UrlData;
-import org.crawler.entity.WebFootballMatchesData;
+import org.crawler.entity.WebSportData;
 import org.crawler.service.UrlDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
@@ -65,10 +65,10 @@ public class UrlDaoImpl implements UrlDao {
 	}
 
 	@Override
-	public int saveGameDatas(List<WebFootballMatchesData> gameDatas) {
-		List<WebFootballMatchesData> batchUpdateDatas = new ArrayList<WebFootballMatchesData>();
-		List<WebFootballMatchesData> batchInsertDatas = new ArrayList<WebFootballMatchesData>();
-		for(WebFootballMatchesData gameData : gameDatas){
+	public int saveGameDatas(List<WebSportData> gameDatas) {
+		List<WebSportData> batchUpdateDatas = new ArrayList<WebSportData>();
+		List<WebSportData> batchInsertDatas = new ArrayList<WebSportData>();
+		for(WebSportData gameData : gameDatas){
 			String isExistSql = "select count(*) from web_football_matches_data where MID = ?";
 			int rowRecord = jdbcTemplate.queryForObject(isExistSql,Integer.class,gameData.getMid());
 			if(0==rowRecord){
@@ -92,7 +92,7 @@ public class UrlDaoImpl implements UrlDao {
 	}
 	
 	//批量更新
-	public int[] batchUpdate(final List<WebFootballMatchesData> batchUpdateDatas){
+	public int[] batchUpdate(final List<WebSportData> batchUpdateDatas){
 		String uSql = "update web_football_matches_data set MB_Win_Rate = ?,TG_Win_Rate = ?,M_Flat_Rate = ?,ShowTypeR = ?,M_LetB = ?,MB_LetB_Rate = ?,"
 				+ "TG_LetB_Rate = ?,MB_Dime = ?,TG_Dime = ?,MB_Dime_Rate = ?,TG_Dime_Rate = ?,MB_Win_Rate_H = ?,TG_Win_Rate_H = ?,M_Flat_Rate_H = ?,"
 				+ "ShowTypeHR = ?,M_LetB_H = ?,MB_LetB_Rate_H = ?,TG_LetB_Rate_H = ?,MB_Dime_H = ?,TG_Dime_H = ?,MB_Dime_Rate_H = ?,TG_Dime_Rate_H = ?,"
@@ -188,7 +188,7 @@ public class UrlDaoImpl implements UrlDao {
 	}
 	
 	//批量插入数据
-	public int[] batchInsert(final List<WebFootballMatchesData> batchInsertDatas){
+	public int[] batchInsert(final List<WebSportData> batchInsertDatas){
 		String uSql = "insert into web_football_matches_data set MID = ?,Type = ?, MB_MID = ?, TG_MID = ?,MB_Team_cn = ?,TG_Team_cn = ?,M_Date = ?, M_Time = ?,"
 				+ "M_Start = ?,M_League_cn = ?, MB_Win_Rate = ?,TG_Win_Rate = ?,M_Flat_Rate = ?,ShowTypeR = ?,M_LetB = ?,MB_LetB_Rate = ?,"
 				+ "TG_LetB_Rate = ?,MB_Dime = ?,TG_Dime = ?,MB_Dime_Rate = ?,TG_Dime_Rate = ?,MB_Win_Rate_H = ?,TG_Win_Rate_H = ?,M_Flat_Rate_H = ?,"

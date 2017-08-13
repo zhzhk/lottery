@@ -1,0 +1,5 @@
+package org.crawler.action;
+
+public class ProxyUtilTest {
+
+}

@@ -1,0 +1,10 @@
+package org.web.service;
+
+import java.util.List;
+import java.util.Map;
+
+import org.web.entity.WebSportData;
+
+public interface FtMatchesDatasService {
+	public Map getTodayMatchesDatas();
+}

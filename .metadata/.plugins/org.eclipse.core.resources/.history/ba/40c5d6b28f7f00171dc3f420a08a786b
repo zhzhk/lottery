@@ -1,0 +1,9 @@
+package org.crawler.service;
+
+import java.util.List;
+
+import org.crawler.entity.ProxyIpData;
+
+public interface GetProxyIpService {
+	public int saveProxyIpDatas();
+}

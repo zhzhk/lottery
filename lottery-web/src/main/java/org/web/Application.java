@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan(basePackages = {"org.web.controller","org.web.service.impl"})
+@ComponentScan(basePackages = {"org.web.controller","org.web.service.impl","org.web.filter","org.web.servlet"})
 @SpringBootApplication // same as @Configuration @EnableAutoConfiguration @ComponentScan
 @MapperScan(basePackages = "org.web.mapper")
 public class Application {

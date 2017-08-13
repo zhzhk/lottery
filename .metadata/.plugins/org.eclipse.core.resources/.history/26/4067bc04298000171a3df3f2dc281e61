@@ -1,0 +1,4 @@
+eclipse.preferences.version=1
+encoding//src/main/java/org/crawler/entity/WebSportData.java=UTF-8
+encoding//src/main/java/org/crawler/service/UrlDao.java=UTF-8
+encoding//src/main/java/org/crawler/service/impl/GetDatasServiceImpl.java=UTF-8

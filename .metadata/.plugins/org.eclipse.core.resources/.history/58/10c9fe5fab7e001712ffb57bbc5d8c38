@@ -1,0 +1,17 @@
+package org.web.servlet;
+
+import javax.servlet.annotation.WebServlet;
+
+import com.alibaba.druid.support.http.StatViewServlet;
+
+public class DruidStatViewServlet extends StatViewServlet{
+
+	/**
+	 * druid数据源状态监控
+	 */
+	@WebServlet(urlPatterns="/druid/*",initParams={
+		@WebInitParam(name="allow",value="127.0.0.1,localhost")
+	})
+	private static final long serialVersionUID = 1L;
+
+}

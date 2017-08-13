@@ -1,8 +1,0 @@
-package org.crawler.service.impl;
-
-import org.springframework.stereotype.Component;
-
-@Component
-public class GetDatasServiceImpl {
-	
-}

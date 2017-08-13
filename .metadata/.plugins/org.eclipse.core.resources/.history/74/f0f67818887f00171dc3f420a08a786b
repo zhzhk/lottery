@@ -1,0 +1,8 @@
+package org.crawler.entity;
+
+public class ProxyIpData {
+	private String ip;
+	private String port;
+	private String location;
+	private TimeStamp createtime;
+}

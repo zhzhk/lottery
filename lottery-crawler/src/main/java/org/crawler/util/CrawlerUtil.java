@@ -8,9 +8,27 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.net.ssl.SSLContext;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpHost;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.entity.EntityBuilder;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.client.fluent.Response;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.config.Registry;
+import org.apache.http.config.RegistryBuilder;
+import org.apache.http.conn.HttpClientConnectionManager;
+import org.apache.http.conn.socket.ConnectionSocketFactory;
+import org.apache.http.conn.ssl.NoopHostnameVerifier;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
+import org.apache.http.ssl.SSLContexts;
+import org.apache.http.util.EntityUtils;
 
 public class CrawlerUtil {
 	public static Map<String,List<String>> map = new HashMap<String,List<String>>();
@@ -21,11 +39,29 @@ public class CrawlerUtil {
 				crawlerUrl = url+"?uid="+uid+"&rtype=r&langx="+lang+"&mtype=3&page_no="+page+"&league_id=&hot_game=undefined&sort_type=undefined&zbreload=1&l=ALL";
 		else if("2".equals(type))
 				crawlerUrl = url+"?uid="+uid+"&rtype=re&langx="+lang+"&mtype=3&delay=&league_id=";
+		else if("3".equals(type))
+			crawlerUrl = url+"?uid="+uid+"&rtype=all&langx="+lang+"&league_id=";
+		else if("4".equals(type))
+			crawlerUrl = url+"?uid=+uid+&rtype=re&langx="+lang+"&league_id=";
 		Response rep;
 		String dataString = null;
+		/**
+		 * 设置代理，访问SSL加密网站
+		 */
+		HttpHost proxy = new HttpHost("121.232.148.201",9000);
+		SSLContext sslContext = SSLContexts.createSystemDefault();
+		SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(sslContext,NoopHostnameVerifier.INSTANCE);
+		Registry<ConnectionSocketFactory> registry = RegistryBuilder.<ConnectionSocketFactory>create().register("https", sslsf).build();
+		HttpClientConnectionManager cm = new PoolingHttpClientConnectionManager(registry);
+		CloseableHttpClient httpclient = HttpClients.custom().setConnectionManager(cm).build();
+		HttpGet httpget = new HttpGet(crawlerUrl);
 		try {
-			rep = Request.Get(crawlerUrl).execute();
-			dataString = rep.returnContent().asString();
+			CloseableHttpResponse response = httpclient.execute(httpget);
+			HttpEntity entity = response.getEntity();
+			dataString = EntityUtils.toString(entity);
+//			rep = Request.Get("https://www.6686sky.net/").connectTimeout(10000).socketTimeout(10000).viaProxy(proxy).execute();//访问http网站，无法访问https网站
+//			dataString = rep.returnContent().asString();
+			System.out.println(dataString);
 		} catch (ClientProtocolException e1) {
 			e1.printStackTrace();
 		} catch (IOException e1) {
@@ -33,7 +69,7 @@ public class CrawlerUtil {
 		}
 		
 		if(page==0){
-			String pattern1 = "parent.GameHead=new Array\\((.+)\\);";
+			String pattern1 = "parent.GameHead\\s?=\\s?new Array\\((.+)\\);";
 			Pattern rh = Pattern.compile(pattern1);
 			Matcher mh = rh.matcher(dataString);
 //			System.out.println(m1.find());
@@ -66,7 +102,13 @@ public class CrawlerUtil {
 			pageCount = Integer.parseInt(mp.group(1));
 		}
 		
-		String patterngame = "parent.GameFT\\[\\d+\\]=new Array\\((.*)\\);";
+		String patterngame = null;
+//		if("3".equals(type)){
+//			patterngame = "parent.GameFT\\[\\d+\\]= Array\\((.*)\\);";
+//		}else{
+			patterngame = "parent.GameFT\\[\\d+\\]=\\s?[new]*\\s?Array\\((.*)\\);";
+//		}
+				
 		Pattern rg = Pattern.compile(patterngame);		
 		Matcher mg = rg.matcher(dataString);
 		while(mg.find()){

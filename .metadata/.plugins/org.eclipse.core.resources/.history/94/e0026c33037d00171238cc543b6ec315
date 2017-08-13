@@ -1,5 +1,0 @@
-package org.crawler.service.impl;
-
-public class GetDatasServiceImpl {
-
-}

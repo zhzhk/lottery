@@ -1,0 +1,17 @@
+package org.crawler.service.impl;
+
+import org.crawler.service.GetProxyIpService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class GetProxyIpServiceImpl implements GetProxyIpService {
+	@Autowired
+	private NamedParameterTemplate namedParameterJdbcTemplate;
+	@Override
+	public void getProxyIp() {
+		
+		
+	}
+
+}

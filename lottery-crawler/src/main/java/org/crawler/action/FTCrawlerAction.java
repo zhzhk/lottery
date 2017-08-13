@@ -15,7 +15,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.client.fluent.Response;
 import org.crawler.entity.UrlData;
-import org.crawler.entity.WebFootballMatchesData;
+import org.crawler.entity.WebSportData;
 import org.crawler.service.UrlDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -67,7 +67,7 @@ public class FTCrawlerAction {
 		Pattern r2 = Pattern.compile(pattern2);		
 		Matcher m2 = r2.matcher(dataString);
 		int count = 0;
-		List<WebFootballMatchesData> gameDatas = new ArrayList<WebFootballMatchesData>();
+		List<WebSportData> gameDatas = new ArrayList<WebSportData>();
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
@@ -83,7 +83,7 @@ public class FTCrawlerAction {
 			Date date = new java.sql.Date(time);
 			long detailTime = timeFormat.parse(year+"-"+timeArray[0]+" "+timeArray[1].substring(0,timeArray[1].length()-1)+":00").getTime();
 			Timestamp dateTime = new Timestamp(detailTime);
-			WebFootballMatchesData gameData = new WebFootballMatchesData();
+			WebSportData gameData = new WebSportData();
 			gameData.setMid(Integer.parseInt(dataArray[getElementIndexByValue("gid",headArray)]));
 			gameData.setType("FT");
 			gameData.setMb_mid(Integer.parseInt(dataArray[getElementIndexByValue("gnum_h",headArray)]));
@@ -173,7 +173,7 @@ public class FTCrawlerAction {
 		Pattern r2 = Pattern.compile(pattern2);		
 		Matcher m2 = r2.matcher(dataString);
 		int count = 0;
-		List<WebFootballMatchesData> gameDatas = new ArrayList<WebFootballMatchesData>();
+		List<WebSportData> gameDatas = new ArrayList<WebSportData>();
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
@@ -187,7 +187,7 @@ public class FTCrawlerAction {
 			Date date = new java.sql.Date(time);
 			long detailTime = timeFormat.parse(year+"-"+timeArray[0]+" "+timeArray[1].substring(0,timeArray[1].length()-1)+":00").getTime();
 			Timestamp dateTime = new Timestamp(detailTime);
-			WebFootballMatchesData gameData = new WebFootballMatchesData();
+			WebSportData gameData = new WebSportData();
 			gameData.setMid(Integer.parseInt(dataArray[getElementIndexByValue("gid",headArray)]));
 			gameData.setType("FT");
 			gameData.setMb_mid(Integer.parseInt(dataArray[getElementIndexByValue("gnum_h",headArray)]));

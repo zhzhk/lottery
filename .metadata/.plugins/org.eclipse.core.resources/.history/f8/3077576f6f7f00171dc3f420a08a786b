@@ -1,0 +1,11 @@
+package org.crawler.action;
+
+import org.junit.Test;
+
+public class ProxyUtilTest {
+	@Test
+	public void testGetFreeProxy(){
+		ProxyUtil gfp = new ProxyUtil();
+		gfp.getFreeProxy(0);
+	}
+}

@@ -11,11 +11,15 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.http.HttpHost;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.client.fluent.Response;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.conn.DefaultProxyRoutePlanner;
 import org.crawler.entity.UrlData;
-import org.crawler.entity.WebFootballMatchesData;
+import org.crawler.entity.WebSportData;
 import org.crawler.service.UrlDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -34,7 +38,16 @@ public class BKCrawlerAction {
 		
 		String dataUrl = crawelUrl+"?uid="+uid+"&rtype=r&langx="+lanaguage+"&mtype=3&page_no=0&league_id=&hot_game=undefined&sort_type=undefined&zbreload=1&l=ALL";
 		
-		Response rep = Request.Get(dataUrl).execute();
+		/**
+		 * 设置代理
+		 */
+		HttpHost proxy = new HttpHost("183.240.87.229",8080);
+//		DefaultProxyRoutePlanner routePlanner = new DefaultProxyRoutePlanner(proxy);
+//		CloseableHttpClient httpclient = HttpClients.custom().setRoutePlanner(routePlanner).build();
+//		Request.Get(dataUrl).addHeader("X-Custome-header", "stuff").viaProxy(proxy).execute().returnContent().asString();
+		
+		
+		Response rep = Request.Get(dataUrl).connectTimeout(3000).socketTimeout(3000).viaProxy(proxy).execute();
 		String dataString = rep.returnContent().asString();
 		
 		String pattern1 = "parent.GameHead=new Array\\((.+)\\);";
@@ -66,7 +79,7 @@ public class BKCrawlerAction {
 		Pattern r2 = Pattern.compile(pattern2);		
 		Matcher m2 = r2.matcher(dataString);
 		int count = 0;
-		List<WebFootballMatchesData> gameDatas = new ArrayList<WebFootballMatchesData>();
+		List<WebSportData> gameDatas = new ArrayList<WebSportData>();
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
@@ -82,7 +95,7 @@ public class BKCrawlerAction {
 			Date date = new java.sql.Date(time);
 			long detailTime = timeFormat.parse(year+"-"+timeArray[0]+" "+timeArray[1].substring(0,timeArray[1].length()-1)+":00").getTime();
 			Timestamp dateTime = new Timestamp(detailTime);
-			WebFootballMatchesData gameData = new WebFootballMatchesData();
+			WebSportData gameData = new WebSportData();
 			gameData.setMid(Integer.parseInt(dataArray[getElementIndexByValue("gid",headArray)]));
 			gameData.setType("FT");
 			gameData.setMb_mid(Integer.parseInt(dataArray[getElementIndexByValue("gnum_h",headArray)]));
@@ -172,7 +185,7 @@ public class BKCrawlerAction {
 		Pattern r2 = Pattern.compile(pattern2);		
 		Matcher m2 = r2.matcher(dataString);
 		int count = 0;
-		List<WebFootballMatchesData> gameDatas = new ArrayList<WebFootballMatchesData>();
+		List<WebSportData> gameDatas = new ArrayList<WebSportData>();
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
@@ -186,7 +199,7 @@ public class BKCrawlerAction {
 			Date date = new java.sql.Date(time);
 			long detailTime = timeFormat.parse(year+"-"+timeArray[0]+" "+timeArray[1].substring(0,timeArray[1].length()-1)+":00").getTime();
 			Timestamp dateTime = new Timestamp(detailTime);
-			WebFootballMatchesData gameData = new WebFootballMatchesData();
+			WebSportData gameData = new WebSportData();
 			gameData.setMid(Integer.parseInt(dataArray[getElementIndexByValue("gid",headArray)]));
 			gameData.setType("FT");
 			gameData.setMb_mid(Integer.parseInt(dataArray[getElementIndexByValue("gnum_h",headArray)]));

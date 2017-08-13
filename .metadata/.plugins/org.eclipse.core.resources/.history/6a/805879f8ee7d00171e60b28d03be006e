@@ -1,0 +1,8 @@
+package org.web.service;
+
+import java.util.Map;
+
+public interface GetMatchesDatasService {
+	public Map<String, Object> getFTTodayMatchesDatas();
+	public Map<String, Object> getFTRbMatchesDatas(req);
+}

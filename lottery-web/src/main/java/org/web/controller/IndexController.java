@@ -1,34 +1,54 @@
 package org.web.controller;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
-import org.web.entity.WebFootballMatchesData;
-import org.web.service.FtMatchesDatasService;
+import org.web.entity.Result;
+import org.web.service.GetMatchesDatasService;
+import org.web.util.ResultUtil;
 
 //@Controller
 @RestController
 @RequestMapping("/")
 public class IndexController {
 	@Autowired
-	private FtMatchesDatasService ftMatchesDatasService;
+	private GetMatchesDatasService getMatchesDatasService;
 	
-	//首页默认展示足球今日赛事数据
+	/**
+	 * 首页默认展示足球今日赛事数据
+	 * @param req
+	 * @return
+	 */
 	@GetMapping(value = "index")
-    public List<WebFootballMatchesData> index(HttpServletRequest req,WebFootballMatchesData webFootballMatchesData) {
+    public Result<Object> index(HttpServletRequest req) {
 		int addr = req.getRemotePort();
 		System.out.println(addr);
-        List<WebFootballMatchesData> webFootballMatchesDatas = new ArrayList<WebFootballMatchesData>();
-        webFootballMatchesDatas = ftMatchesDatasService.getTodayMatchesDatas(webFootballMatchesData);
-        return webFootballMatchesDatas;
+        Map<String, Object> webFootballMatchesDatas = new HashMap<String, Object>();
+        webFootballMatchesDatas = getMatchesDatasService.getMatchesDatas(req,"","","");
+        Result<Object> ret = ResultUtil.success(webFootballMatchesDatas);
+        return ret;
     }
+	
+	/**
+	 * 赛事导航菜单跳转
+	 * @param type  --赛事类型，FT-足球  BK-篮球
+	 * @param subtype    --rb-滚球   r-今日赛事
+	 * @return
+	 */
+	@GetMapping(value = "matches/{type}/{subtype}/{pageStart}")
+	public Result<Object> matchesNavigate(HttpServletRequest req,@PathVariable("type") String type,@PathVariable("subtype") String subtype,@PathVariable("pageStart") String pageStart){
+		System.out.println("**************"+req.getParameter("subtype"));
+		Map<String, Object> webFootballMatchesDatas = new HashMap<String, Object>();
+        webFootballMatchesDatas = getMatchesDatasService.getMatchesDatas(req,type,subtype,pageStart);
+        Result<Object> ret = ResultUtil.success(webFootballMatchesDatas);
+        return ret;
+	}
 }

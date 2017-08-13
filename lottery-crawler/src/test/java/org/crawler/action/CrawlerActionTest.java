@@ -37,6 +37,11 @@ public class CrawlerActionTest {
 //		crawelAction.CrawelRbData();
 //	}
 	
+	@Test 
+	public void Login(){
+		getDatasService.updateUid();
+	}
+	
 	@Test
 	public void testCrawelService(){
 		int a = getDatasService.getFtTodayMatchesDatas();
@@ -46,6 +51,18 @@ public class CrawlerActionTest {
 	@Test
 	public void testCrawelService2(){
 		int a = getDatasService.getFtRbMatchesDatas();
+		System.out.println(a);
+	}
+	
+	@Test
+	public void testCrawelService3(){
+		int a = getDatasService.getBkTodayMatchesDatas();
+		System.out.println(a);
+	}
+	
+	@Test
+	public void testCrawelService4(){
+		int a = getDatasService.getBkRbMatchesDatas();
 		System.out.println(a);
 	}
 }

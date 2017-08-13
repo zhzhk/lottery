@@ -1,0 +1,9 @@
+package org.web.service;
+
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+public interface GetMatchesDatasService {
+	public Map<String, Object> getMatchesDatas(HttpServletRequest req,String type,String subtype,String pageNum);
+}

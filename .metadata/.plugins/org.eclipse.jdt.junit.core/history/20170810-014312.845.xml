@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="CrawlerActionTest.testCrawelService" project="lottery-crawler" tests="1" started="1" failures="0" errors="0" ignored="0">
-  <testcase name="testCrawelService" classname="org.crawler.action.CrawlerActionTest" time="22.138"/>
-</testrun>
